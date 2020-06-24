@@ -125,8 +125,13 @@
               "devServerTarget": "stock-projection-client:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "stock-projection-client"
 }
