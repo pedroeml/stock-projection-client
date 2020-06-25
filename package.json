@@ -5,9 +5,14 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "deploy": "ng deploy --no-silent",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pedroeml/stock-projection-client.git"
   },
   "private": true,
   "dependencies": {
