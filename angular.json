@@ -128,7 +128,12 @@
         },
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
-          "options": {}
+          "options": {
+            "baseHref": "/stock-projection-client/",
+            "repo": "https://github.com/pedroeml/stock-projection-client.git",
+            "name": "Pedro Lemos",
+            "email": "pedroemlemos@gmail.com"
+          }
         }
       }
     }
