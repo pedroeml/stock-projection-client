@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  stockProjectionServiceUrl: 'https://stock-projection-service.herokuapp.com',
 };
