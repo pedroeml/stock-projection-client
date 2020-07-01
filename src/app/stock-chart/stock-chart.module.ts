@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 
+import { IonicModule } from '@ionic/angular';
+
 import { GoogleChartsModule } from 'angular-google-charts';
 
 import { ApiModule } from '../api/api.module';
@@ -22,6 +24,7 @@ import { StockChartRoutingModule } from './stock-chart-routing.module';
     CommonModule,
     GoogleChartsModule,
     HttpClientModule,
+    IonicModule,
     StockChartRoutingModule,
   ],
   providers: [

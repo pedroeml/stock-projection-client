@@ -1,0 +1,13 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "stock-projection-client",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "dist/stock-projection-client",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}
