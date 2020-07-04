@@ -1,0 +1,29 @@
+<ion-menu side="start" menuId="main-menu" contentId="main-content">
+  <ion-header [translucent]="true">
+    <ion-toolbar color="primary">
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item [routerLink]="['/inicio']">
+        <ion-icon name="home-outline" slot="start"></ion-icon>
+        <ion-label>Início</ion-label>
+      </ion-item>
+      <ion-item [routerLink]="['/indicadores']">
+        <ion-icon name="stats-chart-outline" slot="start"></ion-icon>
+        <ion-label>Indicadores</ion-label>
+      </ion-item>
+      <ion-item [routerLink]="['/cotacao']">
+        <ion-icon name="bar-chart-outline" slot="start"></ion-icon>
+        <ion-label>Cotação</ion-label>
+      </ion-item>
+      <ion-item [routerLink]="['/projecao']">
+        <ion-icon name="trending-up-outline" slot="start"></ion-icon>
+        <ion-label>Projeção</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ng-content></ng-content>

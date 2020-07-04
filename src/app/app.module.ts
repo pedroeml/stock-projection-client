@@ -11,11 +11,13 @@ import { GoogleChartsModule } from 'angular-google-charts';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { MainNavComponent } from './main-nav/main-nav.component';
 import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
     AppComponent,
+    MainNavComponent,
   ],
   entryComponents: [],
   imports: [
