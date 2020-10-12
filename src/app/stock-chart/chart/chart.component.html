@@ -1,6 +1,8 @@
-<google-chart *ngIf="data"
+<google-chart *ngIf="data && formatters"
   [title]="ticker"
   [type]="type"
   [data]="data"
-  [columns]="columns">
-</google-chart>
+  [columns]="columns"
+  [dynamicResize]="true"
+  [formatters]="formatters"
+></google-chart>

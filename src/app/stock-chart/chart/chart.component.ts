@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { ChartType } from 'angular-google-charts';
+import { ChartType, getPackageForChart, ScriptLoaderService } from 'angular-google-charts';
 
 import { Subscription } from 'rxjs';
 
@@ -15,19 +15,25 @@ export class ChartComponent implements OnInit {
   private readonly subscriptions: Subscription;
   private readonly chartType: ChartType;
   private readonly chartColumns: string[];
-  private history: number[][];
+  private readonly chartPackage: string;
+  private history: Array<[Date, number]>;
+  private stockFormatters;
 
   @Input()
   public ticker: string;
 
-  constructor(private readonly service: StockChartService) {
+  constructor(
+    private readonly loaderService: ScriptLoaderService,
+    private readonly service: StockChartService) {
     this.subscriptions = new Subscription();
     this.chartType = ChartType.LineChart;
+    this.chartPackage = getPackageForChart(this.chartType);
     this.chartColumns = ['Data', 'Preço'];
   }
 
   ngOnInit() {
     this.subscriptions.add(this.load());
+    this.subscriptions.add(this.loadFormatter());
   }
 
   get type(): ChartType {
@@ -38,8 +44,12 @@ export class ChartComponent implements OnInit {
     return this.chartColumns;
   }
 
-  get data(): number[][] {
+  get data(): Array<[Date, number]> {
     return this.history;
+  }
+
+  get formatters() {
+    return this.stockFormatters;
   }
 
   private load(): Subscription {
@@ -48,5 +58,21 @@ export class ChartComponent implements OnInit {
         this.history = history;
       }
     );
+  }
+
+  private loadFormatter(): Subscription {
+    return this.loaderService.loadChartPackages(this.chartPackage).subscribe(() => {
+      this.stockFormatters = [{
+        formatter: new google.visualization.DateFormat({ pattern: 'dd/MM/yyyy' }),
+        colIndex: 0,
+      }, {
+        formatter: new google.visualization.NumberFormat({
+          decimalSymbol: ',',
+          groupingSymbol: '.',
+          prefix: 'R$ '
+        }),
+        colIndex: 1,
+      }];
+    });
   }
 }
