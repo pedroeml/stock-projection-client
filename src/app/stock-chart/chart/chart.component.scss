@@ -3,4 +3,10 @@
     width: 100%;
     min-height: 350px;
   }
+
+  ion-buttons {
+    margin-top: 10px;
+    flex-flow: row-reverse;
+    padding-right: 5%;
+  }
 }

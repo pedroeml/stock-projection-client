@@ -4,6 +4,7 @@ import { ChartType, getPackageForChart, ScriptLoaderService } from 'angular-goog
 
 import { Subscription } from 'rxjs';
 
+import { TimeSliceEnum } from '../enums/time-slice.enum';
 import { StockChartService } from '../service/stock-chart.service';
 
 @Component({
@@ -12,11 +13,21 @@ import { StockChartService } from '../service/stock-chart.service';
   styleUrls: ['chart.component.scss'],
 })
 export class ChartComponent implements OnInit {
+  public currentTimeSlice: TimeSliceEnum;
+  public readonly timeSlices = TimeSliceEnum;
   private readonly subscriptions: Subscription;
   private readonly chartType: ChartType;
   private readonly chartColumns: string[];
   private readonly chartPackage: string;
+  private readonly fiveDaysAgo: Date;
+  private readonly oneMonthAgo: Date;
+  private readonly threeMonthsAgo: Date;
+  private readonly sixMonthsAgo: Date;
+  private readonly firstDayOfTheYear: Date;
+  private readonly oneYearAgo: Date;
+  private readonly threeYearsAgo: Date;
   private history: Array<[Date, number]>;
+  private filteredHistory: Array<[Date, number]>;
   private stockFormatters;
 
   @Input()
@@ -29,6 +40,14 @@ export class ChartComponent implements OnInit {
     this.chartType = ChartType.LineChart;
     this.chartPackage = getPackageForChart(this.chartType);
     this.chartColumns = ['Data', 'Preço'];
+    this.currentTimeSlice = TimeSliceEnum.MAX;
+    this.fiveDaysAgo = this.subtractDate(5);
+    this.oneMonthAgo = this.subtractDate(0, 1);
+    this.threeMonthsAgo = this.subtractDate(0, 3);
+    this.sixMonthsAgo = this.subtractDate(0, 6);
+    this.firstDayOfTheYear = new Date(new Date().getFullYear(), 0, 1);
+    this.oneYearAgo = this.subtractDate(0, 0, 1);
+    this.threeYearsAgo = this.subtractDate(0, 0, 3);
   }
 
   ngOnInit() {
@@ -45,11 +64,65 @@ export class ChartComponent implements OnInit {
   }
 
   get data(): Array<[Date, number]> {
-    return this.history;
+    return this.filteredHistory ?? this.history;
   }
 
   get formatters() {
     return this.stockFormatters;
+  }
+
+  public setFilter(timeSlice: TimeSliceEnum): void {
+    this.currentTimeSlice = timeSlice;
+
+    switch (timeSlice) {
+      case TimeSliceEnum.THREE_YEARS:
+        this.filteredHistory = this.filterHistory(this.threeYearsAgo);
+        break;
+      case TimeSliceEnum.ONE_YEAR:
+        this.filteredHistory = this.filterHistory(this.oneYearAgo);
+        break;
+      case TimeSliceEnum.YTD:
+        this.filteredHistory = this.filterHistory(this.firstDayOfTheYear);
+        break;
+      case TimeSliceEnum.SIX_MONTHS:
+        this.filteredHistory = this.filterHistory(this.sixMonthsAgo);
+        break;
+      case TimeSliceEnum.THREE_MONTHS:
+        this.filteredHistory = this.filterHistory(this.threeMonthsAgo);
+        break;
+      case TimeSliceEnum.ONE_MONTH:
+        this.filteredHistory = this.filterHistory(this.oneMonthAgo);
+        break;
+      case TimeSliceEnum.FIVE_DAYS:
+        this.filteredHistory = this.filterHistory(this.fiveDaysAgo);
+        break;
+      default:
+        this.filteredHistory = null;
+        break;
+    }
+  }
+
+  private filterHistory(fromDate: Date): Array<[Date, number]>{
+    const i = this.history.findIndex(([d, ]) => d >= fromDate);
+    return this.history.slice(i - 1);
+  }
+
+  private subtractDate(days: number = 0, months: number = 0, years: number = 0): Date {
+    const d = new Date();
+
+    if (years) {
+      d.setFullYear(d.getFullYear() - years);
+    }
+
+    if (months) {
+      d.setMonth(d.getMonth() - months);
+    }
+
+    if (days) {
+      d.setDate(d.getDate() - days);
+    }
+
+    return d;
   }
 
   private load(): Subscription {

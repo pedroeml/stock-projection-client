@@ -1,3 +1,46 @@
+<ion-buttons>
+  <ion-button
+    color="{{ currentTimeSlice === timeSlices.MAX ? 'primary' : undefined }}"
+    (click)="setFilter(timeSlices.MAX)">
+    MÁX
+  </ion-button>
+  <ion-button
+    color="{{ currentTimeSlice === timeSlices.THREE_YEARS ? 'primary' : undefined }}"
+    (click)="setFilter(timeSlices.THREE_YEARS)">
+    3A
+  </ion-button>
+  <ion-button
+    color="{{ currentTimeSlice === timeSlices.ONE_YEAR ? 'primary' : undefined }}"
+    (click)="setFilter(timeSlices.ONE_YEAR)">
+    1A
+  </ion-button>
+  <ion-button
+    color="{{ currentTimeSlice === timeSlices.YTD ? 'primary' : undefined }}"
+    (click)="setFilter(timeSlices.YTD)">
+    YTD
+  </ion-button>
+  <ion-button
+    color="{{ currentTimeSlice === timeSlices.SIX_MONTHS ? 'primary' : undefined }}"
+    (click)="setFilter(timeSlices.SIX_MONTHS)">
+    6M
+  </ion-button>
+  <ion-button
+    color="{{ currentTimeSlice === timeSlices.THREE_MONTHS ? 'primary' : undefined }}"
+    (click)="setFilter(timeSlices.THREE_MONTHS)">
+    3M
+  </ion-button>
+  <ion-button
+    color="{{ currentTimeSlice === timeSlices.ONE_MONTH ? 'primary' : undefined }}"
+    (click)="setFilter(timeSlices.ONE_MONTH)">
+    1M
+  </ion-button>
+  <ion-button
+    color="{{ currentTimeSlice === timeSlices.FIVE_DAYS ? 'primary' : undefined }}"
+    (click)="setFilter(timeSlices.FIVE_DAYS)">
+    5D
+  </ion-button>
+</ion-buttons>
+
 <google-chart *ngIf="data && formatters"
   [title]="ticker"
   [type]="type"
