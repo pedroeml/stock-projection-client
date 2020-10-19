@@ -26,5 +26,22 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "api-performance",
+      "urls": [
+        "*/tickers",
+        "*/indicators",
+        "*/winners",
+        "*/prices",
+        "*/projections"
+      ],
+      "cacheConfig": {
+        "strategy": "performance",
+        "maxSize": 100,
+        "maxAge": "12h"
+      }
+    }
   ]
 }
