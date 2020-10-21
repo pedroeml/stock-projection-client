@@ -4,8 +4,7 @@ import { ChartType, getPackageForChart, ScriptLoaderService } from 'angular-goog
 
 import { Subscription } from 'rxjs';
 
-import { TimeSliceEnum } from '../enums/time-slice.enum';
-import { StockChartService } from '../service/stock-chart.service';
+import { TimeSliceEnum } from '../../enums/time-slice.enum';
 
 @Component({
   selector: 'app-chart',
@@ -26,16 +25,16 @@ export class ChartComponent implements OnInit {
   private readonly firstDayOfTheYear: Date;
   private readonly oneYearAgo: Date;
   private readonly threeYearsAgo: Date;
-  private history: Array<[Date, number]>;
   private filteredHistory: Array<[Date, number]>;
   private stockFormatters;
 
   @Input()
   public ticker: string;
 
-  constructor(
-    private readonly loaderService: ScriptLoaderService,
-    private readonly service: StockChartService) {
+  @Input()
+  public history: Array<[Date, number]>;
+
+  constructor(private readonly loaderService: ScriptLoaderService) {
     this.subscriptions = new Subscription();
     this.chartType = ChartType.LineChart;
     this.chartPackage = getPackageForChart(this.chartType);
@@ -51,8 +50,11 @@ export class ChartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.subscriptions.add(this.load());
     this.subscriptions.add(this.loadFormatter());
+  }
+
+  get isLoading(): boolean {
+    return !this.data || !this.stockFormatters;
   }
 
   get type(): ChartType {
@@ -123,14 +125,6 @@ export class ChartComponent implements OnInit {
     }
 
     return d;
-  }
-
-  private load(): Subscription {
-    return this.service.stockHistory(this.ticker).subscribe(
-      history => {
-        this.history = history;
-      }
-    );
   }
 
   private loadFormatter(): Subscription {

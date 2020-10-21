@@ -41,11 +41,11 @@
   </ion-button>
 </ion-buttons>
 
-<ion-thumbnail *ngIf="!data || !formatters">
+<ion-thumbnail *ngIf="isLoading">
   <ion-skeleton-text animated></ion-skeleton-text>
 </ion-thumbnail>
 
-<google-chart *ngIf="data && formatters"
+<google-chart *ngIf="!isLoading"
   [title]="ticker"
   [type]="type"
   [data]="data"
