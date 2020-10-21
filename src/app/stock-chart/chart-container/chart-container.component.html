@@ -15,6 +15,9 @@
   </ion-header>
 
   <div id="container">
-    <app-chart *ngIf="ticker" [ticker]="ticker"></app-chart>
+    <app-chart *ngIf="!isLoading"
+      [ticker]="ticker"
+      [history]="stockHistory"
+    ></app-chart>
   </div>
 </ion-content>

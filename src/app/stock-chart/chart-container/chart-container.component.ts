@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
 import { Observable, Subscription } from 'rxjs';
-import { first, map } from 'rxjs/operators';
+import { first, map, switchMap, tap } from 'rxjs/operators';
+
+import { StockChartService } from '../service/stock-chart.service';
 
 @Component({
   selector: 'app-chart-container',
@@ -12,20 +14,36 @@ import { first, map } from 'rxjs/operators';
 export class ChartContainerComponent {
   private readonly subscriptions: Subscription;
   private stockTicker: string;
+  private history: Array<[Date, number]>;
 
-  constructor(private readonly route: ActivatedRoute) {
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly service: StockChartService) {
     this.subscriptions = new Subscription();
     this.subscriptions.add(this.load());
+  }
+
+  get isLoading(): boolean {
+    return !this.stockTicker || !this.stockHistory;
   }
 
   get ticker(): string {
     return this.stockTicker;
   }
 
+  get stockHistory(): Array<[Date, number]> {
+    return this.history;
+  }
+
   private load(): Subscription {
-    return this.captureTicker().subscribe(
-      ticker => {
+    return this.captureTicker().pipe(
+      tap(ticker => {
         this.stockTicker = ticker;
+      }),
+      switchMap(ticker => this.service.stockHistory(ticker)),
+    ).subscribe(
+      history => {
+        this.history = history;
       });
   }
 
