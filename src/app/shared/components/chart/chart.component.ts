@@ -73,6 +73,42 @@ export class ChartComponent implements OnInit {
     return this.stockFormatters;
   }
 
+  public isButtonEnabled(timeSlice: TimeSliceEnum): boolean {
+    const firstDay: Date = this.history && this.history[0] ? this.history[0][0] : undefined;
+    let isEnabled = false;
+
+    if (!this.isLoading && firstDay !== undefined) {
+      switch (timeSlice) {
+        case TimeSliceEnum.THREE_YEARS:
+          isEnabled = this.isDateBefore(firstDay, this.threeYearsAgo);
+          break;
+        case TimeSliceEnum.ONE_YEAR:
+          isEnabled = this.isDateBefore(firstDay, this.oneYearAgo);
+          break;
+        case TimeSliceEnum.YTD:
+          isEnabled = this.isDateBefore(firstDay, this.firstDayOfTheYear);
+          break;
+        case TimeSliceEnum.SIX_MONTHS:
+          isEnabled = this.isDateBefore(firstDay, this.sixMonthsAgo);
+          break;
+        case TimeSliceEnum.THREE_MONTHS:
+          isEnabled = this.isDateBefore(firstDay, this.threeMonthsAgo);
+          break;
+        case TimeSliceEnum.ONE_MONTH:
+          isEnabled = this.isDateBefore(firstDay, this.oneMonthAgo);
+          break;
+        case TimeSliceEnum.FIVE_DAYS:
+          isEnabled = this.isDateBefore(firstDay, this.fiveDaysAgo);
+          break;
+        default:
+          isEnabled = true;
+          break;
+      }
+    }
+
+    return isEnabled;
+  }
+
   public setFilter(timeSlice: TimeSliceEnum): void {
     this.currentTimeSlice = timeSlice;
 
@@ -102,6 +138,10 @@ export class ChartComponent implements OnInit {
         this.filteredHistory = null;
         break;
     }
+  }
+
+  private isDateBefore(dateA, dateB): boolean {
+    return dateA <= dateB;
   }
 
   private filterHistory(fromDate: Date): Array<[Date, number]>{

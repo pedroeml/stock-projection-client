@@ -1,41 +1,49 @@
 <ion-buttons>
   <ion-button
     color="{{ currentTimeSlice === timeSlices.MAX ? 'primary' : undefined }}"
+    [disabled]="isLoading"
     (click)="setFilter(timeSlices.MAX)">
     MÁX
   </ion-button>
   <ion-button
     color="{{ currentTimeSlice === timeSlices.THREE_YEARS ? 'primary' : undefined }}"
+    [disabled]="!isButtonEnabled(timeSlices.THREE_YEARS)"
     (click)="setFilter(timeSlices.THREE_YEARS)">
     3A
   </ion-button>
   <ion-button
     color="{{ currentTimeSlice === timeSlices.ONE_YEAR ? 'primary' : undefined }}"
+    [disabled]="!isButtonEnabled(timeSlices.ONE_YEAR)"
     (click)="setFilter(timeSlices.ONE_YEAR)">
     1A
   </ion-button>
   <ion-button
     color="{{ currentTimeSlice === timeSlices.YTD ? 'primary' : undefined }}"
+    [disabled]="!isButtonEnabled(timeSlices.YTD)"
     (click)="setFilter(timeSlices.YTD)">
     YTD
   </ion-button>
   <ion-button
     color="{{ currentTimeSlice === timeSlices.SIX_MONTHS ? 'primary' : undefined }}"
+    [disabled]="!isButtonEnabled(timeSlices.SIX_MONTHS)"
     (click)="setFilter(timeSlices.SIX_MONTHS)">
     6M
   </ion-button>
   <ion-button
     color="{{ currentTimeSlice === timeSlices.THREE_MONTHS ? 'primary' : undefined }}"
+    [disabled]="!isButtonEnabled(timeSlices.THREE_MONTHS)"
     (click)="setFilter(timeSlices.THREE_MONTHS)">
     3M
   </ion-button>
   <ion-button
     color="{{ currentTimeSlice === timeSlices.ONE_MONTH ? 'primary' : undefined }}"
+    [disabled]="!isButtonEnabled(timeSlices.ONE_MONTH)"
     (click)="setFilter(timeSlices.ONE_MONTH)">
     1M
   </ion-button>
   <ion-button
     color="{{ currentTimeSlice === timeSlices.FIVE_DAYS ? 'primary' : undefined }}"
+    [disabled]="isLoading"
     (click)="setFilter(timeSlices.FIVE_DAYS)">
     5D
   </ion-button>
