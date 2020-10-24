@@ -19,7 +19,7 @@ export class ProjectionModel {
 
   get forecastedPrices(): Array<[Date, number]> {
     return this.forecasted
-      .filter(forecasted => forecasted.forecasted)
+      .filter(forecasted => !forecasted.real)
       .map(forecasted => [forecasted.date, forecasted.forecasted]);
   }
 }
