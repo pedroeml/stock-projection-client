@@ -14,8 +14,8 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <app-chart *ngIf="!isLoading"
+  <div class="container">
+    <app-chart
       [ticker]="ticker"
       [history]="stockHistory"
     ></app-chart>

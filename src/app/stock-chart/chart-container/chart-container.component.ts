@@ -23,10 +23,6 @@ export class ChartContainerComponent {
     this.subscriptions.add(this.load());
   }
 
-  get isLoading(): boolean {
-    return !this.stockTicker || !this.stockHistory;
-  }
-
   get ticker(): string {
     return this.stockTicker;
   }
