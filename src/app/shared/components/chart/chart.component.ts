@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 import { ChartType, getPackageForChart, ScriptLoaderService } from 'angular-google-charts';
 
@@ -11,13 +11,13 @@ import { TimeSliceEnum } from '../../enums/time-slice.enum';
   templateUrl: 'chart.component.html',
   styleUrls: ['chart.component.scss'],
 })
-export class ChartComponent implements OnInit {
+export class ChartComponent implements OnChanges {
   public currentTimeSlice: TimeSliceEnum;
+  public data: Array<[Date, number]> | Array<[Date, number, number]>;
   public readonly timeSlices = TimeSliceEnum;
   public readonly options: any;
   private readonly subscriptions: Subscription;
   private readonly chartType: ChartType;
-  private readonly chartColumns: string[];
   private readonly chartPackage: string;
   private readonly fiveDaysAgo: Date;
   private readonly oneMonthAgo: Date;
@@ -26,6 +26,7 @@ export class ChartComponent implements OnInit {
   private readonly firstDayOfTheYear: Date;
   private readonly oneYearAgo: Date;
   private readonly threeYearsAgo: Date;
+  private chartColumns: string[];
   private filteredHistory: Array<[Date, number]>;
   private stockFormatters;
 
@@ -35,11 +36,13 @@ export class ChartComponent implements OnInit {
   @Input()
   public history: Array<[Date, number]>;
 
+  @Input()
+  public forecast: Array<[Date, number]>;
+
   constructor(private readonly loaderService: ScriptLoaderService) {
     this.subscriptions = new Subscription();
     this.chartType = ChartType.LineChart;
     this.chartPackage = getPackageForChart(this.chartType);
-    this.chartColumns = ['Data', 'Preço'];
     this.currentTimeSlice = TimeSliceEnum.MAX;
     this.options = this.createOptions();
     this.fiveDaysAgo = this.subtractDate(5);
@@ -51,8 +54,19 @@ export class ChartComponent implements OnInit {
     this.threeYearsAgo = this.subtractDate(0, 0, 3);
   }
 
-  ngOnInit() {
-    this.subscriptions.add(this.loadFormatter());
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes) {
+      const hasHistory = changes.history && changes.history.previousValue === undefined && changes.history.currentValue !== undefined;
+      const hasForecast = changes.forecast && changes.forecast.previousValue === undefined && changes.forecast.currentValue !== undefined;
+
+      console.log(`${hasHistory} || ${hasForecast} === ${hasHistory || hasForecast}`);
+
+      if (hasHistory || hasForecast) {
+        this.chartColumns = this.forecast ? ['Data', 'Preço', 'Projeção'] : ['Data', 'Preço'];
+        this.subscriptions.add(this.loadFormatter());
+        this.updateData();
+      }
+    }
   }
 
   get isLoading(): boolean {
@@ -65,10 +79,6 @@ export class ChartComponent implements OnInit {
 
   get columns(): string[] {
     return this.chartColumns;
-  }
-
-  get data(): Array<[Date, number]> {
-    return this.filteredHistory ?? this.history;
   }
 
   get formatters() {
@@ -140,6 +150,8 @@ export class ChartComponent implements OnInit {
         this.filteredHistory = null;
         break;
     }
+
+    this.updateData();
   }
 
   private isDateBefore(dateA, dateB): boolean {
@@ -171,18 +183,34 @@ export class ChartComponent implements OnInit {
 
   private loadFormatter(): Subscription {
     return this.loaderService.loadChartPackages(this.chartPackage).subscribe(() => {
-      this.stockFormatters = [{
-        formatter: new google.visualization.DateFormat({ pattern: 'dd/MM/yyyy' }),
-        colIndex: 0,
-      }, {
-        formatter: new google.visualization.NumberFormat({
-          decimalSymbol: ',',
-          groupingSymbol: '.',
-          prefix: 'R$ '
-        }),
-        colIndex: 1,
-      }];
+      this.stockFormatters = this.chartColumns.map((colName, i) => ({
+        formatter: colName === 'Data'
+          ? new google.visualization.DateFormat({ pattern: 'dd/MM/yyyy' })
+          : new google.visualization.NumberFormat({
+            decimalSymbol: ',',
+            groupingSymbol: '.',
+            prefix: 'R$ '
+          }),
+        colIndex: i,
+      }));
     });
+  }
+
+  private updateData(): void {
+    const data: Array<[Date, number]> = this.filteredHistory ?? this.history;
+
+    if (this.forecast?.length) {
+      console.log('forecast data');
+      const historicData: Array<[Date, number, number]> = data.map(([date, price]) => [date, price, null]);
+      const forecastData: Array<[Date, number, number]> = this.forecast.map(([date, price]) => [date, null, price]);
+      const [lastRealDate, lastRealPrice] = data[data.length - 1];
+      this.data = historicData
+        .concat([[lastRealDate, null, lastRealPrice]])
+        .concat(forecastData);
+    } else {
+      console.log('original data');
+      this.data = data;
+    }
   }
 
   private createOptions(): any {
@@ -199,6 +227,12 @@ export class ChartComponent implements OnInit {
         duration: 1800,
         startup: true,
         easing: 'out',
+      },
+      series: {
+        1: {
+          lineDashStyle: [4, 4],
+          color: '#1c91c0',
+        },
       },
     };
   }
