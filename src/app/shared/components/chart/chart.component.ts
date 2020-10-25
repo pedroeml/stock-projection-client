@@ -14,6 +14,7 @@ import { TimeSliceEnum } from '../../enums/time-slice.enum';
 export class ChartComponent implements OnInit {
   public currentTimeSlice: TimeSliceEnum;
   public readonly timeSlices = TimeSliceEnum;
+  public readonly options: any;
   private readonly subscriptions: Subscription;
   private readonly chartType: ChartType;
   private readonly chartColumns: string[];
@@ -40,6 +41,7 @@ export class ChartComponent implements OnInit {
     this.chartPackage = getPackageForChart(this.chartType);
     this.chartColumns = ['Data', 'Preço'];
     this.currentTimeSlice = TimeSliceEnum.MAX;
+    this.options = this.createOptions();
     this.fiveDaysAgo = this.subtractDate(5);
     this.oneMonthAgo = this.subtractDate(0, 1);
     this.threeMonthsAgo = this.subtractDate(0, 3);
@@ -181,5 +183,23 @@ export class ChartComponent implements OnInit {
         colIndex: 1,
       }];
     });
+  }
+
+  private createOptions(): any {
+    return {
+      vAxis: {
+        title: 'Preço',
+        format: 'R$ #.###',
+      },
+      hAxis: {
+        title: 'Data',
+        format: 'MM/yyyy',
+      },
+      animation: {
+        duration: 1800,
+        startup: true,
+        easing: 'out',
+      },
+    };
   }
 }
