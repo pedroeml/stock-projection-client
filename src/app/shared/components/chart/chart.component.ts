@@ -59,8 +59,6 @@ export class ChartComponent implements OnChanges {
       const hasHistory = changes.history && changes.history.previousValue === undefined && changes.history.currentValue !== undefined;
       const hasForecast = changes.forecast && changes.forecast.previousValue === undefined && changes.forecast.currentValue !== undefined;
 
-      console.log(`${hasHistory} || ${hasForecast} === ${hasHistory || hasForecast}`);
-
       if (hasHistory || hasForecast) {
         this.chartColumns = this.forecast ? ['Data', 'Preço', 'Projeção'] : ['Data', 'Preço'];
         this.subscriptions.add(this.loadFormatter());
@@ -200,7 +198,6 @@ export class ChartComponent implements OnChanges {
     const data: Array<[Date, number]> = this.filteredHistory ?? this.history;
 
     if (this.forecast?.length) {
-      console.log('forecast data');
       const historicData: Array<[Date, number, number]> = data.map(([date, price]) => [date, price, null]);
       const forecastData: Array<[Date, number, number]> = this.forecast.map(([date, price]) => [date, null, price]);
       const [lastRealDate, lastRealPrice] = data[data.length - 1];
@@ -208,7 +205,6 @@ export class ChartComponent implements OnChanges {
         .concat([[lastRealDate, null, lastRealPrice]])
         .concat(forecastData);
     } else {
-      console.log('original data');
       this.data = data;
     }
   }
