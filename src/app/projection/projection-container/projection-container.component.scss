@@ -10,6 +10,11 @@
         min-width: fit-content;
         margin-bottom: 10px;
       }
+
+      ion-skeleton-text {
+        width: 250px;
+        height: 17px;
+      }
     }
   }
 }

@@ -21,6 +21,12 @@
       [forecast]="forecast"
     ></app-chart>
 
+    <div class="details" *ngIf="isLoading">
+      <ion-skeleton-text animated></ion-skeleton-text>
+      <ion-skeleton-text animated></ion-skeleton-text>
+      <ion-skeleton-text animated></ion-skeleton-text>
+    </div>
+
     <div class="details" *ngIf="!isLoading">
       <ion-text color="dark">
         <strong>Dias de Pregão:</strong> {{ daysAgo }}
