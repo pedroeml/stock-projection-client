@@ -1,0 +1,15 @@
+:host {
+  .container {
+    .details {
+      display: flex;
+      flex-flow: column;
+      margin-left: 10%;
+      width: 75%;
+
+      ion-text {
+        min-width: fit-content;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
