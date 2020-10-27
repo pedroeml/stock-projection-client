@@ -144,6 +144,16 @@
       "element",
       "app",
       "kebab-case"
-    ]
+    ],
+    "no-unused-expression": true,
+    "no-trailing-whitespace": true,
+    "no-string-literal": false,
+    "triple-equals": true,
+    "arrow-parens": false,
+    "interface-name": false,
+    "member-access": false,
+    "no-consecutive-blank-lines": false,
+    "ordered-imports": true,
+    "trailing-comma": true
   }
 }

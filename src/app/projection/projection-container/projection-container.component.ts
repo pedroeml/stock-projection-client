@@ -1,9 +1,11 @@
-import { first, map, tap, switchMap } from 'rxjs/operators';
-import { Subscription, Observable } from 'rxjs';
-import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Component } from '@angular/core';
-import { ProjectionService } from '../service/projection.service';
+import { ActivatedRoute, ParamMap } from '@angular/router';
+
+import { Observable, Subscription } from 'rxjs';
+import { first, map, switchMap, tap } from 'rxjs/operators';
+
 import { ProjectionModel } from '../model/projection.model';
+import { ProjectionService } from '../service/projection.service';
 
 @Component({
   selector: 'app-projection-container',
