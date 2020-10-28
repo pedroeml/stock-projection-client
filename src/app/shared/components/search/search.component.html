@@ -1,0 +1,18 @@
+<ion-searchbar
+  placeholder="Ticker"
+  showCancelButton="focus"
+  (ionCancel)="hideTickers()"
+  (ionBlur)="hideTickers(120)"
+  (ionClear)="hideTickers()"
+  (ionFocus)="showTickers()"
+  (ionChange)="filterTickers($event)"
+  [ngClass]="{ 'slide-left': displayTickers }"
+  animated
+></ion-searchbar>
+<ion-list *ngIf="displayTickers" class="slide-left">
+  <ion-item *ngFor="let ticker of tickers" [routerLink]="['..', ticker]">
+    <ion-text color="primary">
+      {{ ticker }}
+    </ion-text>
+  </ion-item>
+</ion-list>

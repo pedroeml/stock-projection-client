@@ -1,0 +1,41 @@
+:host {
+  display: flex;
+
+  .slide-left {
+    animation: move 0.2s;
+  }
+
+  ion-searchbar {
+    width: 190px;
+    text-align: start;
+  }
+
+  ion-list {
+    width: 110px;
+    max-height: 56px;
+    overflow: auto;
+    scroll-snap-align: start;
+    scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    scroll-snap-stop: always;
+
+    ion-item {
+      scroll-snap-align: center;
+      cursor: pointer;
+
+      ion-text {
+        padding: 30px 0 30px 0;
+      }
+    }
+  }
+
+  @keyframes move {
+    from {
+      transform: translateX(75%);
+    }
+    to {
+      transform: translateX(0%);
+    }
+  }
+}
