@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { GoogleChartsModule } from 'angular-google-charts';
 
 import { ChartComponent } from './components/chart/chart.component';
+import { EmptyContainerComponent } from './components/empty-container/empty-container.component';
 import { SearchComponent } from './components/search/search.component';
 import { SearchRestService } from './services/search-rest.service';
 import { SearchService } from './services/search.service';
@@ -14,6 +15,7 @@ import { SearchService } from './services/search.service';
 @NgModule({
   declarations: [
     ChartComponent,
+    EmptyContainerComponent,
     SearchComponent,
   ],
   imports: [
@@ -28,6 +30,7 @@ import { SearchService } from './services/search.service';
   ],
   exports: [
     ChartComponent,
+    EmptyContainerComponent,
     SearchComponent,
   ]
 })
