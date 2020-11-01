@@ -16,5 +16,12 @@
         height: 17px;
       }
     }
+
+    app-empty-container {
+      ion-icon {
+        height: 80px;
+        width: auto;
+      }
+    }
   }
 }

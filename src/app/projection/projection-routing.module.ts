@@ -4,6 +4,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { ProjectionContainerComponent } from './projection-container/projection-container.component';
 
 const routes: Routes = [{
+  path: '',
+  component: ProjectionContainerComponent,
+}, {
   path: ':ticker',
   component: ProjectionContainerComponent,
 }];

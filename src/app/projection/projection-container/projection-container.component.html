@@ -3,8 +3,8 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Projeção: {{ ticker }}</ion-title>
-    <app-search slot="end"></app-search>
+    <ion-title>Projeção{{ ticker ? ': ' + ticker : ' Futura' }}</ion-title>
+    <app-search [baseHref]="'/projecao'" slot="end"></app-search>
   </ion-toolbar>
 </ion-header>
 
@@ -16,19 +16,23 @@
   </ion-header>
 
   <div class="container">
-    <app-chart
+    <app-empty-container *ngIf="!ticker">
+      <ion-icon name="trending-up-outline"></ion-icon>
+    </app-empty-container>
+
+    <app-chart *ngIf="ticker"
       [ticker]="ticker"
       [history]="real"
       [forecast]="forecast"
     ></app-chart>
 
-    <div class="details" *ngIf="isLoading">
+    <div class="details" *ngIf="ticker && isLoading">
       <ion-skeleton-text animated></ion-skeleton-text>
       <ion-skeleton-text animated></ion-skeleton-text>
       <ion-skeleton-text animated></ion-skeleton-text>
     </div>
 
-    <div class="details" *ngIf="!isLoading">
+    <div class="details" *ngIf="ticker && !isLoading">
       <ion-text color="dark">
         <strong>Dias de Pregão:</strong> {{ daysAgo }}
       </ion-text>
