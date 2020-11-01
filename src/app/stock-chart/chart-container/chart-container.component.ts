@@ -45,8 +45,8 @@ export class ChartContainerComponent {
 
   private captureTicker(): Observable<string> {
     return this.route.params.pipe(
-      first(),
       map((params: ParamMap) => params['ticker'] || ''),
+      first(ticker => ticker?.length > 0),
     );
   }
 }
