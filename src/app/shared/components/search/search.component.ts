@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { of, Subscription } from 'rxjs';
 import { delay } from 'rxjs/operators';
@@ -17,10 +17,14 @@ export class SearchComponent {
   private inputValue: string;
   private filteredTickers: string[];
 
+  @Input()
+  public baseHref: string;
+
   constructor(private readonly service: SearchService) {
     this.allTickers = [];
     this.displayTickers = false;
     this.inputValue = '';
+    this.baseHref = '..';
     this.subscriptions = new Subscription();
     this.subscriptions.add(this.load());
   }

@@ -10,7 +10,7 @@
   animated
 ></ion-searchbar>
 <ion-list *ngIf="displayTickers" class="slide-left">
-  <ion-item *ngFor="let ticker of tickers" [routerLink]="['..', ticker]">
+  <ion-item *ngFor="let ticker of tickers" [routerLink]="[baseHref, ticker]">
     <ion-text color="primary">
       {{ ticker }}
     </ion-text>
