@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Cotação{{ ticker ? ': ' + ticker : ' Histórica' }}</ion-title>
-    <app-search [baseHref]="'/cotacao'" slot="end"></app-search>
+    <app-search [baseHref]="'/cotacao'" [ticker]="ticker" slot="end"></app-search>
   </ion-toolbar>
 </ion-header>
 

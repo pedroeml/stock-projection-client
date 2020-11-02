@@ -4,7 +4,7 @@
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Projeção{{ ticker ? ': ' + ticker : ' Futura' }}</ion-title>
-    <app-search [baseHref]="'/projecao'" slot="end"></app-search>
+    <app-search [baseHref]="'/projecao'" [ticker]="ticker" slot="end"></app-search>
   </ion-toolbar>
 </ion-header>
 

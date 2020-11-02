@@ -23,6 +23,7 @@ export class ProjectionContainerComponent {
   constructor(
     private readonly route: ActivatedRoute,
     private readonly service: ProjectionService) {
+    this.stockTicker = '';
     this.subscriptions = new Subscription();
     this.subscriptions.add(this.load());
   }

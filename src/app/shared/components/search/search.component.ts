@@ -20,10 +20,14 @@ export class SearchComponent {
   @Input()
   public baseHref: string;
 
+  @Input()
+  public ticker: string;
+
   constructor(private readonly service: SearchService) {
     this.allTickers = [];
     this.displayTickers = false;
     this.inputValue = '';
+    this.ticker = '';
     this.baseHref = '..';
     this.subscriptions = new Subscription();
     this.subscriptions.add(this.load());

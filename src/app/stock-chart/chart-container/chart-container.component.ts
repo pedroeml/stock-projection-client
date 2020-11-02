@@ -19,6 +19,7 @@ export class ChartContainerComponent {
   constructor(
     private readonly route: ActivatedRoute,
     private readonly service: StockChartService) {
+    this.stockTicker = '';
     this.subscriptions = new Subscription();
     this.subscriptions.add(this.load());
   }

@@ -1,6 +1,7 @@
 <ion-searchbar
   placeholder="Ticker"
   showCancelButton="focus"
+  [value]="ticker"
   (ionCancel)="hideTickers()"
   (ionBlur)="hideTickers(120)"
   (ionClear)="hideTickers()"
