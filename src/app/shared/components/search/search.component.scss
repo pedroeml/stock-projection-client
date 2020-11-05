@@ -21,11 +21,11 @@
     scroll-snap-stop: always;
 
     ion-item {
-      scroll-snap-align: center;
+      scroll-snap-align: start;
       cursor: pointer;
 
       ion-text {
-        padding: 30px 0 30px 0;
+        padding: 20px 0 20px 0;
       }
     }
   }
