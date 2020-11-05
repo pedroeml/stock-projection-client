@@ -45,7 +45,7 @@ export class ProjectionContainerComponent {
   }
 
   get firstDay(): Date {
-    return this.projection.forecasted[0].date;
+    return this.projection.firstDay;
   }
 
   get daysAgo(): number {

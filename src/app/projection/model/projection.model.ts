@@ -4,11 +4,13 @@ export class ProjectionModel {
   public readonly daysAgo: number;
   public readonly meanSquaredError: number;
   public readonly forecasted: PriceProjectionModel[];
+  public readonly firstDay: Date;
 
   constructor(response: ProjectionResponse) {
     this.daysAgo = response.daysAgo;
     this.meanSquaredError = response.meanSquaredError;
     this.forecasted = response.items.map(forecasted => new PriceProjectionModel(forecasted));
+    this.firstDay = this.calcFirstDay();
   }
 
   get realPrices(): Array<[Date, number]> {
@@ -21,6 +23,23 @@ export class ProjectionModel {
     return this.forecasted
       .filter(forecasted => !forecasted.real)
       .map(forecasted => [forecasted.date, forecasted.forecasted]);
+  }
+
+  private calcFirstDay(): Date {
+    let lastDay: Date;
+
+    for (const projection of this.forecasted) {
+      if (projection.real) {
+        lastDay = projection.date;
+      } else {
+        break;
+      }
+    }
+
+    const firstDay = new Date(lastDay);
+    firstDay.setDate(firstDay.getDate() - this.daysAgo);
+
+    return firstDay;
   }
 }
 
