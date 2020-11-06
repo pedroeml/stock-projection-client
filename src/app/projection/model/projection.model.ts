@@ -3,12 +3,16 @@ import { PriceProjectionResponse, ProjectionResponse } from '../integration/proj
 export class ProjectionModel {
   public readonly daysAgo: number;
   public readonly meanSquaredError: number;
+  public readonly rootMeanSquaredError: number;
+  public readonly meanAbsolutePercentageError: number;
   public readonly forecasted: PriceProjectionModel[];
   public readonly firstDay: Date;
 
   constructor(response: ProjectionResponse) {
     this.daysAgo = response.daysAgo;
     this.meanSquaredError = response.meanSquaredError;
+    this.rootMeanSquaredError = response.rootMeanSquaredError;
+    this.meanAbsolutePercentageError = response.meanAbsolutePercentageError;
     this.forecasted = response.items.map(forecasted => new PriceProjectionModel(forecasted));
     this.firstDay = this.calcFirstDay();
   }

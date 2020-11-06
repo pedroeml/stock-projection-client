@@ -30,6 +30,7 @@
       <ion-skeleton-text animated></ion-skeleton-text>
       <ion-skeleton-text animated></ion-skeleton-text>
       <ion-skeleton-text animated></ion-skeleton-text>
+      <ion-skeleton-text animated></ion-skeleton-text>
     </div>
 
     <div class="details" *ngIf="ticker && !isLoading">
@@ -40,7 +41,10 @@
         <strong>1° Dia de Pregão:</strong> {{ firstDay | date:'dd/MM/yyyy' }}
       </ion-text>
       <ion-text color="dark">
-        <strong>Erro Quadrático Médio:</strong> {{ error | percent:'1.2' }}
+        <strong>Porcentagem de Erro (MAPE):</strong> {{ mape | percent:'1.2' }}
+      </ion-text>
+      <ion-text color="dark">
+        <strong>Erro Médio (RMSE):</strong> {{ rmse | currency:'BRL' }}
       </ion-text>
     </div>
   </div>

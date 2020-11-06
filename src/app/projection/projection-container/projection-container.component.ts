@@ -52,8 +52,12 @@ export class ProjectionContainerComponent {
     return this.projection.daysAgo;
   }
 
-  get error(): number {
-    return this.projection.meanSquaredError;
+  get mape(): number {
+    return this.projection.meanAbsolutePercentageError;
+  }
+
+  get rmse(): number {
+    return this.projection.rootMeanSquaredError;
   }
 
   private load(): Subscription {
