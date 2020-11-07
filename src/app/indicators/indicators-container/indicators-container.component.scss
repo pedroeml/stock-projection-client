@@ -1,0 +1,12 @@
+:host {
+  .container {
+    margin-top: 25px;
+
+    app-empty-container {
+      ion-icon {
+        height: 80px;
+        width: auto;
+      }
+    }
+  }
+}

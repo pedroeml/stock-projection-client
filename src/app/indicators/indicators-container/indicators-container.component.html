@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Indicadores{{ ticker ? ': ' + ticker : ' Fundamentalistas' }}</ion-title>
+    <app-search [baseHref]="'/indicadores'" [ticker]="ticker" slot="end"></app-search>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{ ticker }}</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="container">
+    <app-empty-container *ngIf="!ticker">
+      <ion-icon name="stats-chart-outline"></ion-icon>
+    </app-empty-container>
+  </div>
+</ion-content>

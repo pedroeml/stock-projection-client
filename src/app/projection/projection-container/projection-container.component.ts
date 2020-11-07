@@ -12,7 +12,6 @@ import { ProjectionService } from '../service/projection.service';
   templateUrl: './projection-container.component.html',
   styleUrls: ['./projection-container.component.scss'],
 })
-
 export class ProjectionContainerComponent {
   private readonly subscriptions: Subscription;
   private stockTicker: string;

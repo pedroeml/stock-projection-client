@@ -7,6 +7,9 @@ const routes: Routes = [{
 }, {
   path: 'projecao',
   loadChildren: () => import('./projection/projection.module').then(m => m.ProjectionModule),
+}, {
+  path: 'indicadores',
+  loadChildren: () => import('./indicators/indicators.module').then(m => m.IndicatorsModule),
 }];
 
 @NgModule({
