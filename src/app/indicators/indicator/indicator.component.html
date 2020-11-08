@@ -1,0 +1,6 @@
+<ion-text color="dark">
+  <strong>{{ label }}</strong>
+  <ion-text color="{{ value < 0 ? 'danger': undefined }}">
+    <ng-content></ng-content>
+  </ion-text>
+</ion-text>
