@@ -19,5 +19,87 @@
     <app-empty-container *ngIf="!ticker">
       <ion-icon name="stats-chart-outline"></ion-icon>
     </app-empty-container>
+
+    <div class="details" *ngIf="ticker && !isLoading">
+      <app-indicator label="Cotação">
+        {{ indicators.Cotacao | currency:'BRL' }}
+      </app-indicator>
+
+      <app-indicator label="Volume médio de negociação (2 meses)">
+        {{ indicators.Liq2meses | currency:'BRL' }}
+      </app-indicator>
+
+      <app-indicator label="P / L" [value]="indicators.PL">
+        {{ indicators.PL | number:'1.2':'pt' }}
+      </app-indicator>
+
+      <app-indicator label="P / VP">
+        {{ indicators.PVP | number:'1.2':'pt' }}
+      </app-indicator>
+
+      <app-indicator label="P / EBIT" [value]="indicators.PEBIT">
+        {{ indicators.PEBIT | number:'1.2':'pt' }}
+      </app-indicator>
+
+      <app-indicator label="PSR">
+        {{ indicators.PSR | number:'1.2':'pt' }}
+      </app-indicator>
+
+      <app-indicator label="P / Ativos">
+        {{ indicators.PAtivo | number:'1.2':'pt' }}
+      </app-indicator>
+
+      <app-indicator label="P / Capital de Giro">
+        {{ indicators.PCapGiro | number:'1.2':'pt' }}
+      </app-indicator>
+
+      <app-indicator label="P / Ativo Circulante Líquido" [value]="indicators.PACL">
+         {{ indicators.PACL | number:'1.2':'pt' }}
+      </app-indicator>
+
+      <app-indicator label="Dividend Yield">
+        {{ indicators.DY | percent:'1.2' }}
+      </app-indicator>
+
+      <app-indicator label="EV / EBITDA">
+        {{ indicators.EVEBITDA | number:'1.2':'pt' }}
+      </app-indicator>
+
+      <app-indicator label="EV / EBIT" [value]="indicators.EVEBIT">
+        {{ indicators.EVEBIT | number:'1.2':'pt' }}
+      </app-indicator>
+
+      <app-indicator label="Crescimento Receita Líquida (5 anos)" [value]="indicators.Cresc5anos">
+        {{ indicators.Cresc5anos | percent:'1.2' }}
+      </app-indicator>
+
+      <app-indicator label="Margem EBIT" [value]="indicators.MrgEbit">
+        {{ indicators.MrgEbit | percent:'1.2' }}
+      </app-indicator>
+
+      <app-indicator label="Margem Líquida" [value]="indicators.MrgLiq">
+        {{ indicators.MrgLiq | percent:'1.2' }}
+      </app-indicator>
+
+      <app-indicator label="ROIC" [value]="indicators.ROIC">
+        {{ indicators.ROIC | percent:'1.2' }}
+      </app-indicator>
+
+      <app-indicator label="ROE" [value]="indicators.ROE">
+        {{ indicators.ROE | percent:'1.2' }}
+      </app-indicator>
+
+      <app-indicator label="Liquidez Corrente">
+        {{ indicators.LiqCorr | number:'1.2':'pt' }}
+      </app-indicator>
+
+      <app-indicator label="Dívida Bruta / Patrimônio Líquido" [value]="indicators.DivBrutPat >= 1 ? -1 : 0">
+        {{ indicators.DivBrutPat | number:'1.2':'pt' }}
+      </app-indicator>
+
+      <app-indicator label="Patrimônio Líquido">
+        {{ indicators.PatLiq | currency:'BRL' }}
+      </app-indicator>
+    </div>
   </div>
 </ion-content>

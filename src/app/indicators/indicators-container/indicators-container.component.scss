@@ -2,6 +2,17 @@
   .container {
     margin-top: 25px;
 
+    .details {
+      display: flex;
+      flex-wrap: wrap;
+      margin-left: 10%;
+      max-width: 75vw;
+
+      app-indicator {
+        width: 50%;
+      }
+    }
+
     app-empty-container {
       ion-icon {
         height: 80px;
