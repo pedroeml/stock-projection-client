@@ -13,6 +13,7 @@ import { IndicatorsService } from '../service/indicators.service';
   styleUrls: ['./indicators-container.component.scss'],
 })
 export class IndicatorsContainerComponent {
+  public readonly skeletons: any[];
   private readonly subscriptions: Subscription;
   private stockTicker: string;
   private indicatorsData: IndicatorsResponse;
@@ -20,6 +21,7 @@ export class IndicatorsContainerComponent {
   constructor(
     private readonly route: ActivatedRoute,
     private readonly service: IndicatorsService) {
+    this.skeletons = Array(20).fill(undefined);
     this.stockTicker = '';
     this.subscriptions = new Subscription();
     this.subscriptions.add(this.load());

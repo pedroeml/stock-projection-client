@@ -20,6 +20,10 @@
       <ion-icon name="stats-chart-outline"></ion-icon>
     </app-empty-container>
 
+    <div class="details" *ngIf="ticker && isLoading">
+      <ion-skeleton-text *ngFor="let key of skeletons" animated></ion-skeleton-text>
+    </div>
+
     <div class="details" *ngIf="ticker && !isLoading">
       <app-indicator label="Cotação">
         {{ indicators.Cotacao | currency:'BRL' }}
