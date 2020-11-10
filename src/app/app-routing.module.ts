@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [{
+  path: 'inicio',
+  loadChildren: () => import('./home/home.module').then(m => m.HomeModule),
+}, {
   path: 'cotacao',
   loadChildren: () => import('./stock-chart/stock-chart.module').then(m => m.StockChartModule),
 }, {
@@ -10,6 +13,10 @@ const routes: Routes = [{
 }, {
   path: 'indicadores',
   loadChildren: () => import('./indicators/indicators.module').then(m => m.IndicatorsModule),
+}, {
+  path: '',
+  redirectTo: '/inicio',
+  pathMatch: 'full',
 }];
 
 @NgModule({
