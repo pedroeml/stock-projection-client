@@ -14,6 +14,9 @@ const routes: Routes = [{
   path: 'indicadores',
   loadChildren: () => import('./indicators/indicators.module').then(m => m.IndicatorsModule),
 }, {
+  path: 'vencedoras',
+  loadChildren: () => import('./winners/winners.module').then(m => m.WinnersModule),
+}, {
   path: '',
   redirectTo: '/inicio',
   pathMatch: 'full',
