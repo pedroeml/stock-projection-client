@@ -8,44 +8,36 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">{{ ticker }}</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="container" [fullscreen]="true">
+  <app-empty-container *ngIf="!ticker">
+    <ion-icon name="trending-up-outline"></ion-icon>
+  </app-empty-container>
 
-  <div class="container">
-    <app-empty-container *ngIf="!ticker">
-      <ion-icon name="trending-up-outline"></ion-icon>
-    </app-empty-container>
+  <app-chart *ngIf="ticker"
+    [ticker]="ticker"
+    [history]="real"
+    [forecast]="forecast"
+  ></app-chart>
 
-    <app-chart *ngIf="ticker"
-      [ticker]="ticker"
-      [history]="real"
-      [forecast]="forecast"
-    ></app-chart>
+  <div class="details" *ngIf="ticker && isLoading">
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+    <ion-skeleton-text animated></ion-skeleton-text>
+  </div>
 
-    <div class="details" *ngIf="ticker && isLoading">
-      <ion-skeleton-text animated></ion-skeleton-text>
-      <ion-skeleton-text animated></ion-skeleton-text>
-      <ion-skeleton-text animated></ion-skeleton-text>
-      <ion-skeleton-text animated></ion-skeleton-text>
-    </div>
-
-    <div class="details" *ngIf="ticker && !isLoading">
-      <ion-text color="dark">
-        <strong>Dias de Pregão:</strong> {{ daysAgo }}
-      </ion-text>
-      <ion-text color="dark">
-        <strong>1° Dia de Pregão:</strong> {{ firstDay | date:'dd/MM/yyyy' }}
-      </ion-text>
-      <ion-text color="dark">
-        <strong>Porcentagem de Erro (MAPE):</strong> {{ mape | percent:'1.2' }}
-      </ion-text>
-      <ion-text color="dark">
-        <strong>Erro Médio (RMSE):</strong> {{ rmse | currency:'BRL' }}
-      </ion-text>
-    </div>
+  <div class="details" *ngIf="ticker && !isLoading">
+    <ion-text color="dark">
+      <strong>Dias de Pregão:</strong> {{ daysAgo }}
+    </ion-text>
+    <ion-text color="dark">
+      <strong>1° Dia de Pregão:</strong> {{ firstDay | date:'dd/MM/yyyy' }}
+    </ion-text>
+    <ion-text color="dark">
+      <strong>Porcentagem de Erro (MAPE):</strong> {{ mape | percent:'1.2' }}
+    </ion-text>
+    <ion-text color="dark">
+      <strong>Erro Médio (RMSE):</strong> {{ rmse | currency:'BRL' }}
+    </ion-text>
   </div>
 </ion-content>

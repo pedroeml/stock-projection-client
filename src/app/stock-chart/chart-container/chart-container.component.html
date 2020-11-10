@@ -8,21 +8,13 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">{{ ticker }}</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="container" [fullscreen]="true">
+  <app-empty-container *ngIf="!ticker">
+    <ion-icon name="bar-chart-outline"></ion-icon>
+  </app-empty-container>
 
-  <div class="container">
-    <app-empty-container *ngIf="!ticker">
-      <ion-icon name="bar-chart-outline"></ion-icon>
-    </app-empty-container>
-
-    <app-chart *ngIf="ticker"
-      [ticker]="ticker"
-      [history]="stockHistory"
-    ></app-chart>
-  </div>
+  <app-chart *ngIf="ticker"
+    [ticker]="ticker"
+    [history]="stockHistory"
+  ></app-chart>
 </ion-content>
