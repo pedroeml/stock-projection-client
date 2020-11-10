@@ -5,4 +5,34 @@ import { Component } from '@angular/core';
   templateUrl: './main-nav.component.html',
   styleUrls: ['./main-nav.component.scss']
 })
-export class MainNavComponent { }
+export class MainNavComponent {
+  public readonly routes: Array<{
+    link: string;
+    label: string;
+    icon: string;
+  }>;
+
+  constructor() {
+    this.routes = [{
+      link: '/inicio',
+      label: 'Início',
+      icon: 'home-outline'
+    }, {
+      link: '/indicadores',
+      label: 'Indicadores',
+      icon: 'stats-chart-outline'
+    }, {
+      link: '/vencedoras',
+      label: 'Vencedoras',
+      icon: 'cash-outline'
+    }, {
+      link: '/cotacao',
+      label: 'Cotação',
+      icon: 'bar-chart-outline'
+    }, {
+      link: '/projecao',
+      label: 'Projeção',
+      icon: 'trending-up-outline'
+    }];
+  }
+}
