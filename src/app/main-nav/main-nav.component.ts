@@ -24,11 +24,11 @@ export class MainNavComponent {
     }, {
       link: '/vencedoras',
       label: 'Vencedoras',
-      icon: 'cash-outline'
+      icon: 'podium-outline'
     }, {
       link: '/cotacao',
       label: 'Cotação',
-      icon: 'bar-chart-outline'
+      icon: 'pulse-outline'
     }, {
       link: '/projecao',
       label: 'Projeção',
