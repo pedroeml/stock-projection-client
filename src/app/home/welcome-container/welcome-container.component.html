@@ -7,4 +7,41 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true"></ion-content>
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <div class="intro">
+      <ion-icon name="analytics-outline"></ion-icon>
+
+      <ion-text color="primary">
+        <h2>Análise de Ações Brasileiras</h2>
+      </ion-text>
+
+      <ion-text>
+        <h3>Obtenha informações essenciais para suas análises de qualquer ação listada na B3</h3>
+      </ion-text>
+
+      <ion-text>
+        <h4>Aumente sua confiança e previsibilidade ao investir em ações</h4>
+      </ion-text>
+    </div>
+
+    <div class="cards">
+      <app-card *ngFor="let route of routes"
+        [routerLink]="[route.link]"
+        [title]="route.title"
+        [subtitle]="route.subtitle"
+        [description]="route.description"
+        [icon]="route.icon"
+      ></app-card>
+    </div>
+
+    <div class="footer">
+      <ion-icon name="alert-circle-outline" color="medium"></ion-icon>
+
+      <ion-text color="medium">
+        Todas as informações apresentadas não devem ser tratadas como recomendação de investimento.
+        Todas as operações de compra e de venda são de única e exclusiva responsabilidade do investidor.
+      </ion-text>
+    </div>
+  </div>
+</ion-content>
