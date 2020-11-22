@@ -8,11 +8,13 @@ import { apiProvider } from '../api/provider/api.provider';
 import { WinnersRestService } from './service/winners-rest.service';
 import { WinnersService } from './service/winners.service';
 import { WinnersContainerComponent } from './winners-container/winners-container.component';
+import { WinnersListComponent } from './winners-list/winners-list.component';
 import { WinnersRoutingModule } from './winners-routing.module';
 
 @NgModule({
   declarations: [
     WinnersContainerComponent,
+    WinnersListComponent,
   ],
   imports: [
     ApiModule,

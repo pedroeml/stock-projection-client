@@ -1,0 +1,38 @@
+<ion-grid>
+  <ion-row>
+    <ion-col size="2"><strong>Ticker</strong></ion-col>
+    <ion-col size="2"><strong>Dividend Yield</strong></ion-col>
+    <ion-col size="2"><strong>Div. B. / Pat. L.</strong></ion-col>
+    <ion-col size="1"><strong>ROE</strong></ion-col>
+    <ion-col size="1"><strong>ROIC</strong></ion-col>
+  </ion-row>
+
+  <ion-row *ngFor="let winner of winners">
+    <ion-col size="2"><strong>{{ winner.ticker }}</strong></ion-col>
+    <ion-col size="2">{{ winner.dividendYield | percent:'1.2' }}</ion-col>
+    <ion-col size="2">{{ winner.divBrutPat | number:'1.2':'pt' }}</ion-col>
+    <ion-col size="1">{{ winner.roe | percent:'1.2' }}</ion-col>
+    <ion-col size="1">{{ winner.roic | percent:'1.2' }}</ion-col>
+    <ion-col size="1" class="ion-align-self-center">
+      <ion-icon
+        [routerLink]="['/indicadores', winner.ticker]"
+        name="stats-chart-outline"
+        color="secondary"
+      ></ion-icon>
+    </ion-col>
+    <ion-col size="1" class="ion-align-self-center">
+      <ion-icon
+        [routerLink]="['/cotacao', winner.ticker]"
+        name="pulse-outline"
+        color="secondary"
+      ></ion-icon>
+    </ion-col>
+    <ion-col size="1" class="ion-align-self-center">
+      <ion-icon
+        [routerLink]="['/projecao', winner.ticker]"
+        name="trending-up-outline"
+        color="secondary"
+      ></ion-icon>
+    </ion-col>
+  </ion-row>
+</ion-grid>

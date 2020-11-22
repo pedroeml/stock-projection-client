@@ -1,0 +1,20 @@
+:host {
+  ion-grid {
+    width: 95vw;
+    max-width: 785px;
+
+    ion-row {
+      ion-col {
+
+        &.ion-align-self-center {
+          display: flex;
+          justify-content: center;
+        }
+
+        ion-icon {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
