@@ -1,0 +1,12 @@
+:host {
+  ion-grid {
+    width: 95vw;
+    max-width: 785px;
+
+    ion-row {
+      ion-skeleton-text {
+        height: 17px;
+      }
+    }
+  }
+}

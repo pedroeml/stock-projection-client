@@ -8,5 +8,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-grid *ngIf="winners.length === 0">
+    <ion-row *ngFor="let skeleton of skeletons">
+      <ion-skeleton-text animated></ion-skeleton-text>
+    </ion-row>
+  </ion-grid>
+
   <app-winners-list *ngIf="winners.length > 0" [winners]="winners"></app-winners-list>
 </ion-content>

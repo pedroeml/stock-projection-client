@@ -11,10 +11,12 @@ import { WinnersService } from '../service/winners.service';
   styleUrls: ['./winners-container.component.scss'],
 })
 export class WinnersContainerComponent {
+  public readonly skeletons: any[]
   public readonly winners: WinnerModel[];
   private readonly subscriptions: Subscription;
 
   constructor(private readonly service: WinnersService) {
+    this.skeletons = Array(20).fill(undefined);
     this.winners = [];
     this.subscriptions = new Subscription();
     this.subscriptions.add(this.load());
