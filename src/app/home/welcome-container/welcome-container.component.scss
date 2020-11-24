@@ -31,6 +31,15 @@
       width: 85vw;
       max-width: 765px;
 
+      .lines {
+        display: flex;
+        flex-flow: column;
+
+        ion-text {
+          font-size: small;
+        }
+      }
+
       ion-icon {
         min-height: 25px;
         min-width: 25px;
