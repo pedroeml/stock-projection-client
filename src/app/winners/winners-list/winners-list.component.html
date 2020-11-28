@@ -9,10 +9,10 @@
 
   <ion-row *ngFor="let winner of winners">
     <ion-col size="2"><strong>{{ winner.ticker }}</strong></ion-col>
-    <ion-col size="2">{{ winner.dividendYield | percent:'1.2' }}</ion-col>
+    <ion-col size="2">{{ winner.dividendYield | percent:'1.1' }}</ion-col>
     <ion-col size="2">{{ winner.divBrutPat | number:'1.2':'pt' }}</ion-col>
-    <ion-col size="1">{{ winner.roe | percent:'1.2' }}</ion-col>
-    <ion-col size="1">{{ winner.roic | percent:'1.2' }}</ion-col>
+    <ion-col size="1">{{ winner.roe | percent:'1.1' }}</ion-col>
+    <ion-col size="1">{{ winner.roic | percent:'1.1' }}</ion-col>
     <ion-col size="1" class="ion-align-self-center">
       <ion-icon
         [routerLink]="['/indicadores', winner.ticker]"
