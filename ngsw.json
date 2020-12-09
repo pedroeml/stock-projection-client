@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1607486951125,
+  "timestamp": 1607488283072,
   "index": "/stock-projection-client/index.html",
   "assetGroups": [
     {
@@ -19,8 +19,8 @@
         "/stock-projection-client/13-es5.f3ec1f088a935aec7ba2.js",
         "/stock-projection-client/14-es2015.c9a6d3c1193e4d123dda.js",
         "/stock-projection-client/14-es5.c9a6d3c1193e4d123dda.js",
-        "/stock-projection-client/15-es2015.5581f3e9d045221caf43.js",
-        "/stock-projection-client/15-es5.5581f3e9d045221caf43.js",
+        "/stock-projection-client/15-es2015.c6bd701b677ed1857ae3.js",
+        "/stock-projection-client/15-es5.c6bd701b677ed1857ae3.js",
         "/stock-projection-client/16-es2015.e53991dbe6052f762f2a.js",
         "/stock-projection-client/16-es5.e53991dbe6052f762f2a.js",
         "/stock-projection-client/17-es2015.4e47af05891eb5f3eccf.js",
@@ -139,8 +139,8 @@
         "/stock-projection-client/polyfills-dom-es5.6b1764212747fb5c4287.js",
         "/stock-projection-client/polyfills-es2015.048fb8854c66c2bbd96e.js",
         "/stock-projection-client/polyfills-es5.bc6246415ea64b84cf92.js",
-        "/stock-projection-client/runtime-es2015.d8946b1b9763cc048976.js",
-        "/stock-projection-client/runtime-es5.d8946b1b9763cc048976.js",
+        "/stock-projection-client/runtime-es2015.26fb5cb26476a9e8c192.js",
+        "/stock-projection-client/runtime-es5.26fb5cb26476a9e8c192.js",
         "/stock-projection-client/styles.b90531eb9c5954f757a1.css"
       ],
       "patterns": []
@@ -195,8 +195,8 @@
     "/stock-projection-client/13-es5.f3ec1f088a935aec7ba2.js": "894fe8240cca14fca3c616194fc4c7d4f61c8385",
     "/stock-projection-client/14-es2015.c9a6d3c1193e4d123dda.js": "0b5dc668c4c0087b0cb77ec9cd986d7ac2a728b7",
     "/stock-projection-client/14-es5.c9a6d3c1193e4d123dda.js": "12dcf4ad0b253d0a5fba9c6c06b134578b25743d",
-    "/stock-projection-client/15-es2015.5581f3e9d045221caf43.js": "24097aa5f4e6f6d55b3ccccc5ee14f2deba2d6b0",
-    "/stock-projection-client/15-es5.5581f3e9d045221caf43.js": "8156169afaf3b2afeaa594a8fe0b86f690524adf",
+    "/stock-projection-client/15-es2015.c6bd701b677ed1857ae3.js": "38e53227d5e515a19e32e392bde544778265bce0",
+    "/stock-projection-client/15-es5.c6bd701b677ed1857ae3.js": "d5dc041e35b382c0579907915986afd4ae22474b",
     "/stock-projection-client/16-es2015.e53991dbe6052f762f2a.js": "bb3f548ca19fe4267bd1f4a293f423355179e198",
     "/stock-projection-client/16-es5.e53991dbe6052f762f2a.js": "2fa35cf23c1628bd8ea540e5ba0094a633ef111d",
     "/stock-projection-client/17-es2015.4e47af05891eb5f3eccf.js": "ee89e0d21d4d75108752dd90ba1dfb49c96a458a",
@@ -313,7 +313,7 @@
     "/stock-projection-client/assets/shapes.svg": "5413e95adabcb2cb639970051f55e0ddb64ace53",
     "/stock-projection-client/common-es2015.ac786023e2bc5f173eec.js": "5eff27f45c34e90547f9bca24eaa6f7f77615211",
     "/stock-projection-client/common-es5.ac786023e2bc5f173eec.js": "a8fc9da88ea5f5234be9885b4f795c4da49b920f",
-    "/stock-projection-client/index.html": "10b17abacd36d62455c7662afa0f15802d104200",
+    "/stock-projection-client/index.html": "385489fe12cc462bfae6cfecd6b4073914f8fb74",
     "/stock-projection-client/main-es2015.6d54e7f4ef2490eaa046.js": "0ecd4fa4b111d08e3eeb27cb7f9484f9a40e8f54",
     "/stock-projection-client/main-es5.6d54e7f4ef2490eaa046.js": "d9e14ada2d29db1dc12d9b54e6d10ed97e0b70b2",
     "/stock-projection-client/manifest.webmanifest": "16ba72e3349a8797cdef3a86cd92c7655e14c170",
@@ -325,8 +325,8 @@
     "/stock-projection-client/polyfills-dom-es5.6b1764212747fb5c4287.js": "b40b060fc2ec6685d08ec75044e49dd2f737e044",
     "/stock-projection-client/polyfills-es2015.048fb8854c66c2bbd96e.js": "4de571922adde5bdc4ea2945f7267909dcc4ce25",
     "/stock-projection-client/polyfills-es5.bc6246415ea64b84cf92.js": "d11abab8dd3c6d26400e4b4fb862ba9d0248269f",
-    "/stock-projection-client/runtime-es2015.d8946b1b9763cc048976.js": "8d6b61dcb253d4f6e5f5f9a799199006dfb575f6",
-    "/stock-projection-client/runtime-es5.d8946b1b9763cc048976.js": "9a62fd8c06ac7e1f5186a88ac942503512b77873",
+    "/stock-projection-client/runtime-es2015.26fb5cb26476a9e8c192.js": "a5502d7246844e4e43911b91e553d099cadeaa2e",
+    "/stock-projection-client/runtime-es5.26fb5cb26476a9e8c192.js": "aa13eb1171ffac2741c4f6f270a0fa4371e35cff",
     "/stock-projection-client/styles.b90531eb9c5954f757a1.css": "54cea12bcba483376a503f8129ffb6fc11e9de49"
   },
   "navigationUrls": [
